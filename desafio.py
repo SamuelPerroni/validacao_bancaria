@@ -120,46 +120,47 @@ def main():
     while True:
         opcao = menu()
         
-        if opcao == "d":
-            valor = float(input("Informe o valor do depósito: "))
+        match opcao:
+            case "d":
+                valor = float(input("Informe o valor do depósito: "))
 
-            saldo, extrato = depositar(saldo, valor, extrato)
+                saldo, extrato = depositar(saldo, valor, extrato)
 
-        elif opcao == "s":
-            valor = float(input("Informe o valor do saque: "))
+            case "s":
+                valor = float(input("Informe o valor do saque: "))
 
-            saldo, extrato = sacar(
-                saldo=saldo,
-                valor=valor,
-                extrato=extrato,
-                limite=limite,
-                numero_saques=numero_saques,
-                limite_saques=LIMITE_SAQUES,
-            )
-        
-
-        elif opcao == "e":
-            exibir_extrato(saldo, extrato=extrato)
+                saldo, extrato = sacar(
+                    saldo=saldo,
+                    valor=valor,
+                    extrato=extrato,
+                    limite=limite,
+                    numero_saques=numero_saques,
+                    limite_saques=LIMITE_SAQUES,
+                )
             
-        elif opcao == "nu":
-            criar_usuario(usuarios)
-            
-        elif opcao == "nc":
-            #numero_conta = len(contas) + 1
-            conta = criar_conta(AGENCIA, numero_conta, usuarios)
-            
-            if conta:
-                contas.append(conta)
-                numero_conta += 1
+
+            case "e":
+                exibir_extrato(saldo, extrato=extrato)
                 
-        elif opcao == "lc":
-            listar_contas(contas)
+            case "nu":
+                criar_usuario(usuarios)
+                
+            case "nc":
+                #numero_conta = len(contas) + 1
+                conta = criar_conta(AGENCIA, numero_conta, usuarios)
+                
+                if conta:
+                    contas.append(conta)
+                    numero_conta += 1
+                    
+            case "lc":
+                listar_contas(contas)
 
-        elif opcao == "q":
-            break
-    
-        else:
-            print("Operação inválida, por favor selecione novamente a operação desejada.")
+            case "q":
+                break
+        
+            case _:
+                print("Operação inválida, por favor selecione novamente a operação desejada.")
 
 
 main()
