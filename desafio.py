@@ -266,7 +266,7 @@ def exibir_extrato(clientes):
     print("=============================================")
     
 
-def cirar_cliente(clientes):
+def criar_cliente(clientes):
     cpf = input("Informe o CPF (somente números): ")
     cliente = filtrar_cliente(cpf, clientes)
     
